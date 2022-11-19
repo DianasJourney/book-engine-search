@@ -5,14 +5,13 @@ const { signToken } = require('../utils/auth')
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
-      // check if users exist
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id }).select(
           '-__v -password'
         )
         return userData
       }
-      throw new AuthenticationError('Not logged in')
+      throw new AuthenticationError('Please login')
     }
   },
 
@@ -21,13 +20,13 @@ const resolvers = {
       const user = await User.findOne({ email })
       // check if user exists with email and credentials
       if (!user) {
-        throw new AuthenticationError('Incorrect credentials')
+        throw new AuthenticationError('Cannot find user')
       }
       const correctPassword = await user.isCorrectPassword(password)
 
       // check password
       if (!correctPassword) {
-        throw new AuthenticationError('Incorrect credentials')
+        throw new AuthenticationError('Incorrect password')
       }
 
       const token = signToken(user)
