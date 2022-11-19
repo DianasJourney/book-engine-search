@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const db = require('./config/connection')
 
-
+//requiring our apollo server aswell as schemas and utils 
 const { ApolloServer } = require('apollo-server-express')
 const { typeDefs, resolvers } = require('./schemas')
 const { authMiddleware } = require('./utils/auth')
@@ -27,7 +27,7 @@ startServer()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
+//if in production then path the build and client into a static asset
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')))
 }
