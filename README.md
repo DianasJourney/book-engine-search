@@ -1,4 +1,4 @@
-## book-engine-search
+## Search for your favorite books!
 
 ### Overview
 An amazing application that allows users to search for books! Users with an account has perks where they can save their favorite book into their own dashboard and delete them if they no longer like the book! Book search engine is a great application that uses react and MongoDB so it is a smooth experience for any bookworm!
