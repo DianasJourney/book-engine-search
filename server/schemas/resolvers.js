@@ -18,17 +18,17 @@ const resolvers = {
   Mutation: {
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email })
-      // check if user exists with email and credentials
+      //this will check the user for the email and password to see if it matches up
       if (!user) {
         throw new AuthenticationError('Cannot find user')
       }
       const correctPassword = await user.isCorrectPassword(password)
 
-      // check password
+      // this checks the password
       if (!correctPassword) {
         throw new AuthenticationError('Incorrect password')
       }
-
+//returns the token the user is found
       const token = signToken(user)
       return { token, user }
     },
@@ -40,6 +40,7 @@ const resolvers = {
     },
     saveBook: async (parent, { input }, context) => {
       if (context.user) {
+        //finds the user and updates their book
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { savedBooks: input } },
