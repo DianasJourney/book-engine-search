@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-//importing our gpl from apollo where we can grab our queries into the database
+//importing our gpl from apollo where we create queries and export into the database
 export const GET_ME = gql`
   {
     me {
