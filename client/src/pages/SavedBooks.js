@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  Jumbotron,
-  Container,
-  CardColumns,
-  Card,
-  Button
-} from 'react-bootstrap'
+import { Jumbotron, Container, CardColumns, Card, Button} from 'react-bootstrap'
 import { GET_ME } from '../utils/queries'
 import { REMOVE_BOOK } from '../utils/mutations'
 import Auth from '../utils/auth'
@@ -18,7 +12,7 @@ const SavedBooks = () => {
   console.log(userData)
   const [removeBook] = useMutation(REMOVE_BOOK)
 
-  // function that accepts the book's mongo _id value as param and deletes the book from the database
+//function to delete our book
   const handleDeleteBook = async bookId => {
     const token = Auth.loggedIn() ? Auth.getToken() : null
 
